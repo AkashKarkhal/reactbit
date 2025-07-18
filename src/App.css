@@ -1,38 +1,163 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body,
+html {
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
+  position: relative;
+  width: 90%;
+  max-width: 280px;
+  aspect-ratio: 7 / 9;
+  background-image: url('./profilepic.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2),
+              0 16px 32px rgba(255, 254, 254, 0.781),
+              0 4px 8px rgb(225, 225, 225);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(40px);
+}
+
+.card b {
+  position: absolute;
+  inset: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.card .content {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transform: scale(0);
+  transition: 0.5s;
+  padding: 20px;
+  width: 100%;
+  animation: showContent 0.6s ease forwards;
+  animation-delay: 0.5s;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes showContent {
   to {
-    transform: rotate(360deg);
+    transform: scale(1);
+    bottom: 25px;
+  }
+}
+
+.content .title {
+  color: #fff;
+  font-weight: bolder;
+  font-size: 1.2em;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.content .title span {
+  font-weight: 700;
+  font-size: 0.6em;
+  display: block;
+}
+
+.content .sci {
+  display: flex;
+  gap: 12px;
+}
+
+.sci li {
+  list-style: none;
+}
+
+.sci li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  fill: currentColor;
+}
+
+.sci li a:hover {
+  color: #fff;
+  background: rgba(253, 251, 251, 0.3);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+    max-width: 320px;
+    aspect-ratio: 7 / 9;
+    margin: 16px;
+  }
+
+  .content .title {
+    font-size: 1em;
+  }
+
+  .content .title span {
+    font-size: 0.7em;
+  }
+
+  .sci li a {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* For ultra-wide screens (optional) */
+@media (min-width: 1200px) {
+  .card {
+    max-width: 320px;
   }
 }
